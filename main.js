@@ -10,6 +10,14 @@ function tocaSom(seletorAudio) {
    }
 }
 
+function pintaBotao(tecla) {
+   tecla.classList.add("ativa");
+}
+
+function despintaBotao(tecla) {
+   tecla.classList.remove("ativa");
+}
+
 const listaDeTeclas = document.querySelectorAll(".tecla");
 
 for (let i = 0; i < listaDeTeclas.length; i++) {
@@ -24,16 +32,15 @@ for (let i = 0; i < listaDeTeclas.length; i++) {
    };
 
    tecla.onkeydown = function (event) {
-      if (
-         event.code === "Space" ||
-         event.code === "Enter" ||
-         event.code === "NumpadEnter"
-      ) {
-         tecla.classList.add("ativa");
+      switch (event.code) {
+         case "Space":
+         case "Enter":
+         case "NumpadEnter":
+            pintaBotao(tecla);
       }
    };
 
    tecla.onkeyup = function () {
-      tecla.classList.remove("ativa");
+      despintaBotao(tecla);
    };
 }
